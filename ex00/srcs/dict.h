@@ -19,6 +19,6 @@ typedef struct	s_one_two_digits
 	char	*value;
 }				t_one_two_digits;
 
-void	parse_dict_file(char *filename);
+char	*parse_dict_file(char *filename);
 
 #endif
