@@ -6,7 +6,7 @@
 /*   By: stiffiny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:13:42 by stiffiny          #+#    #+#             */
-/*   Updated: 2021/02/07 17:15:06 by stiffiny         ###   ########.fr       */
+/*   Updated: 2021/02/07 18:58:54 by stiffiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	is_dict_valid(char **dict)
 	i = 0;
 	while (dict[i] != 0)
 		i++;
-	printf("rules %d\n", i);
 	if ((i < 41 * 2) || (i % 2 != 0))
 		return (0);
 	return (1);
@@ -42,7 +41,6 @@ int	is_print_or_line_end(char *str)
 			str++;
 		else
 		{
-			printf("Error symbol: %c", *str);
 			return (0);
 		}
 	}

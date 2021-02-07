@@ -6,7 +6,7 @@
 /*   By: stiffiny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:56:51 by stiffiny          #+#    #+#             */
-/*   Updated: 2021/02/06 17:54:52 by stiffiny         ###   ########.fr       */
+/*   Updated: 2021/02/07 20:44:28 by stiffiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,24 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+int		is_input_valid(char *str)
+{
+	while (*str)
+	{
+		if (!(*str <= '9' && *str >= '0'))
+				return (0);
+		str++;
+	}
+	return (1);
+}
+
 int		main(int argc, char **argv)
 {
-	int		is_error;
+	int			is_error;
 	char		*dict_str;
 	char		**dict_arr;
 	char		**prefixes;
+	char		*input;
 	t_num_str	*num_str;
 
 	is_error = 0;
@@ -29,12 +41,7 @@ int		main(int argc, char **argv)
 		return (1);
 	else
 		dict_str = (argc == 3) ? parse_dict_file(argv[1]) : parse_dict_file("numbers.dict.txt");
-	if (!dict_str)
-	{
-		write(2, "Dict Error\n", 11);
-		return (1);
-	}
-	if (!is_print_or_line_end(dict_str))
+	if (!dict_str || !is_print_or_line_end(dict_str))
 	{
 		write(2, "Dict Error\n", 11);
 		return (1);
@@ -47,20 +54,16 @@ int		main(int argc, char **argv)
 		return (1);
 	}
 	prefixes = get_prefixes(dict_arr);
-	int i = 0;
-	while (prefixes[i])
-	{
-		printf("prefixes[%d] = \"%s\"\n", i, prefixes[i]);
-		i++;
-	}
 	num_str = get_num_str(dict_arr);
-	int j = 0;
-	while (num_str[j].key != -1)
+	input = (argc == 3) ? argv[2] : argv[1];
+	if (!is_input_valid(input))
 	{
-		printf("Key: %d | Value: %s\n", num_str[j].key, num_str[j].value);
-		j++;
+		write(2, "Error\n", 6);
+		return (1);
 	}
+	is_error = print_nbr_words(input, prefixes, num_str);
+	if (is_error)
+		write(2, "Dict Error\n", 11);
 	free(dict_arr);
-
 	return (is_error);
 }
