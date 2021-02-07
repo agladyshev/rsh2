@@ -34,7 +34,7 @@ int		main(int argc, char **argv)
 	is_error = !(is_dict_valid(dict_arr));
 	prefixes = get_prefixes(dict_arr);
 	int i = 0;
-	while (i < 37)
+	while (prefixes[i])
 	{
 		printf("prefixes[%d] = \"%s\"\n", i, prefixes[i]);
 		i++;

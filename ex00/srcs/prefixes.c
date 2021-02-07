@@ -62,7 +62,7 @@ char	**get_prefixes(char **dict)
 
 	max = count_prefixes(dict);
 	//printf("Max prefix if for %d num\n", max);
-	prefixes = malloc(sizeof(char *) * max);
+	prefixes = malloc(sizeof(char *) * (max + 1));
 	set_arr_to_empty_str(&prefixes, max);
 	i = 0;
 	while (dict[i])
@@ -74,5 +74,6 @@ char	**get_prefixes(char **dict)
 		}
 		i += 2;
 	}
+	prefixes[max] = 0;
 	return (prefixes);
 }
