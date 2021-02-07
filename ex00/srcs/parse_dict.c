@@ -13,42 +13,67 @@
 #include "dict.h"
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdlib.h>
 
-void	get_dict_len(char *filename, int **arr)
+int	get_dict_len(char *filename)
 {
 	char	buf[1];
 	int		bytes;
 	int		chars;
-	int		keys;
 	int		file;
 
 	file = open(filename, 0);
 	
 	if (!file)
-		return ;
+		return (0);
 	//error handling
 	bytes = -1;
 	chars = 0;
-	keys = 0;
 	while(bytes)
 	{
 		bytes = read(file, buf, 1);
 		if (buf[0] != ' ')
 			chars++;
-		if (buf[0] == ':')
-			keys++;
 	}
 	close(file);
-
-	printf("Chars: %d | Keys: %d\n", chars, keys);
-	*arr[0] = chars;
-	*arr[1] = keys;
+	printf("Chars: %d\n", chars);
+	return (chars);
 }
 
 char	*parse_dict_file(char *filename)
 {
-	int		*dict_len[2];
+	int	dict_len;
+	char	buf[1];
+	int	bytes;
+	int	file;
+	char	*str;
+	int	i;
 
-	get_dict_len(filename, dict_len);
-	return (0);
+	dict_len = get_dict_len(filename);
+	str = malloc(sizeof(char) * (dict_len + 1));
+	if (!str)
+		return (str);
+	// couldn't allocate memory error	
+	
+	file = open(filename, 0);
+	if (!file)
+		return (0);
+	//error handling
+	
+	bytes = -1;
+	i = 0;
+	while (bytes)
+	{
+		bytes = read(file, buf, 1);
+		//printf("Bytes: %d, i: %d, buf: %s\n", bytes, i, buf);
+		if (buf[0] != ' ' && bytes)
+		{
+			str[i] = buf[0];
+			i++;
+		}
+	}	
+	printf("Is i = len ? %d %d\n", i,  dict_len);
+	str[i] = '\0';
+
+	return (str);
 }
