@@ -15,6 +15,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+
+#include <stdio.h>
+
 int	get_dict_len(char *filename)
 {
 	char	buf[1];
@@ -32,7 +35,7 @@ int	get_dict_len(char *filename)
 	while(bytes)
 	{
 		bytes = read(file, buf, 1);
-		if (buf[0] != ' ')
+		if (bytes && buf[0] != ' ')
 			chars++;
 	}
 	close(file);

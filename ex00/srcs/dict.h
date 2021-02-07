@@ -1,30 +1,18 @@
 #ifndef DICT_H
 # define DICT_H
 
-
-//remove this later
-#include <stdio.h>
-
-
-
-typedef struct	s_place_value
+typedef struct	s_num_str
 {
-	int		place;
+	int	key;
 	char	*value;
-}				t_place_value;
+}				t_num_str;
 
-typedef struct	s_one_two_digits
-{
-	char	*key;
-	char	*value;
-}				t_one_two_digits;
-
-char	*parse_dict_file(char *filename);
-char	**ft_split(char *str, char *charset);
-char	**get_prefixes(char **dict);
-int	is_num(char *str);
-int	is_dict_valid(char **dict);
+char		*parse_dict_file(char *filename);
+char		**ft_split(char *str, char *charset);
+char		**get_prefixes(char **dict);
+int		is_num(char *str);
+int		is_dict_valid(char **dict);
+t_num_str	*get_num_str(char **dict);
+int		ft_atoi(char *str);
 
 #endif
-
-
