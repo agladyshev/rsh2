@@ -18,7 +18,6 @@ int	is_dict_valid(char **dict)
 	i = 0;
 	while(dict[i] != 0)
 	{
-		printf("%s\n", dict[i]);
 		if (i % 2 == 0 && !is_num(dict[i]))
 			return (0);
 		i++;
