@@ -27,7 +27,7 @@ int	get_dict_len(char *filename)
 
 	file = open(filename, 0);
 	
-	if (!file)
+	if (file < 0)
 		return (0);
 	//error handling
 	bytes = -1;
@@ -53,6 +53,8 @@ char	*parse_dict_file(char *filename)
 	int	i;
 
 	dict_len = get_dict_len(filename);
+	if (!dict_len)
+		return (0);
 	str = malloc(sizeof(char) * (dict_len + 1));
 	if (!str)
 		return (str);
