@@ -1,12 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   num_str.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stiffiny <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/07 17:00:17 by stiffiny          #+#    #+#             */
+/*   Updated: 2021/02/07 17:01:48 by stiffiny         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "dict.h"
 #include <stdlib.h>
 
-#include <stdio.h>
-
-int	is_num_name(char *str)
+int			is_num_name(char *str)
 {
 	int i;
-	
+
 	i = 0;
 	while (str[i] != '\0')
 	{
@@ -17,7 +27,7 @@ int	is_num_name(char *str)
 	return (i);
 }
 
-int	count_num_names(char **dict)
+int			count_num_names(char **dict)
 {
 	int	len;
 	int	i;
@@ -39,12 +49,12 @@ int	count_num_names(char **dict)
 t_num_str	*get_num_str(char **dict)
 {
 	t_num_str	*num_str;
-	int		count;
-	int		i;
-	int		j;
-	int		len;
+	int			count;
+	int			i;
+	int			j;
+	int			len;
+
 	count = count_num_names(dict);
-	//printf("Count of names: %d\n", count);
 	num_str = malloc(sizeof(t_num_str) * (count + 1));
 	i = 0;
 	j = 0;
@@ -60,6 +70,6 @@ t_num_str	*get_num_str(char **dict)
 		i += 2;
 	}
 	num_str[j].key = -1;
-	num_str[j].value = 0; 
+	num_str[j].value = 0;
 	return (num_str);
 }

@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prefixes.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stiffiny <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/07 17:09:53 by stiffiny          #+#    #+#             */
+/*   Updated: 2021/02/07 17:13:17 by stiffiny         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "dict.h"
 #include <stdlib.h>
 
-int	is_prefix(char *str)
+int		is_prefix(char *str)
 {
 	int i;
-	
+
 	i = 1;
 	if (str[0] == '-')
 		return (0);
@@ -21,12 +33,10 @@ int	is_prefix(char *str)
 
 void	set_arr_to_empty_str(char ***arr, int len)
 {
-	int i;
-	char *empty;
+	int		i;
+	char	*empty;
 
 	i = 0;
-
-	// DO NOT FORGET TO FREE THIS EMPTY STRING
 	empty = malloc(sizeof(char));
 	empty[0] = '\0';
 	while (i < len)
@@ -36,7 +46,7 @@ void	set_arr_to_empty_str(char ***arr, int len)
 	}
 }
 
-int	count_prefixes(char **dict)
+int		count_prefixes(char **dict)
 {
 	int	max;
 	int	count;
@@ -58,10 +68,10 @@ int	count_prefixes(char **dict)
 char	**get_prefixes(char **dict)
 {
 	char	**prefixes;
-	int	max;
-	int	count;
-	int	i;
-	
+	int		max;
+	int		count;
+	int		i;
+
 	max = count_prefixes(dict);
 	prefixes = malloc(sizeof(char *) * (max + 1));
 	set_arr_to_empty_str(&prefixes, max);
