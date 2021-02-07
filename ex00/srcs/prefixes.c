@@ -6,14 +6,16 @@ int	is_prefix(char *str)
 	int i;
 	
 	i = 1;
+	if (str[0] == '-')
+		return (0);
+	if (str[0] == '+')
+		str++;
 	if (str[0] != '1')
 		return (0);
-	while (str[i] != '\0')
-	{
-		if (str[i] != '0')
-			return (0);
+	while (str[i] == '0')
 		i++;
-	}
+	if (i < 2)
+		return (0);
 	return (i);
 }
 
@@ -59,9 +61,8 @@ char	**get_prefixes(char **dict)
 	int	max;
 	int	count;
 	int	i;
-
+	
 	max = count_prefixes(dict);
-	//printf("Max prefix if for %d num\n", max);
 	prefixes = malloc(sizeof(char *) * (max + 1));
 	set_arr_to_empty_str(&prefixes, max);
 	i = 0;
