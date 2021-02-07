@@ -22,7 +22,8 @@ int	is_dict_valid(char **dict)
 			return (0);
 		i++;
 	}
-	if (i < 41 * 2)
+	printf("rules %d\n", i);
+	if ((i < 41 * 2) || (i % 2 != 0))
 		return (0);
 	return (1);
 }
