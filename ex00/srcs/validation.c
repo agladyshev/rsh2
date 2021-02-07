@@ -26,3 +26,18 @@ int	is_dict_valid(char **dict)
 		return (0);
 	return (1);
 }
+
+int	is_print_or_line_end(char *str)
+{
+	while (*str)
+	{
+		if (*str > 31 || *str == 10) 
+			str++;
+		else
+		{
+			printf("Error symbol: %c", *str);
+			return (0);
+		}
+	}
+	return (1);
+}
